@@ -1,34 +1,6 @@
-# agent-search-booster
+# 工具组合与依赖对照
 
-[English](README.md) | **简体中文**
-
-**配齐工具，通过一个 Skill 增强 Agent 的搜索与资料获取能力。**
-
-本项目把网页搜索、正文提取、平台读取和本地文档工具的分工与调用方法整理为统一入口。用户直接提出任务，由 Agent 按场景调用工具。
-
-主要解决两件事：
-
-- **扩大搜索覆盖**：补充普通搜索不容易找到的平台内容、原帖、讨论与专业资料。
-- **提高内容获取能力**：从链接和摘要继续取得网页正文、评论回复、字幕及文档内容，供 Agent 分析。
-
-目前以 Codex 为使用入口。首页中英双语，Skill 调用说明为中文。
-
-## 怎么用
-
-1. 将 `skills/agent-search-booster/` 整个文件夹放入个人 `~/.agents/skills/` 或项目 `.agents/skills/`。已有同名目录先比较个人改动。[官方 Skill 说明](https://learn.chatgpt.com/docs/build-skills)
-2. 对照下表确认工具已安装、连接并完成必要登录。缺项按原链接补齐；MCP 连接代码和少量必要设置见[配置要点](skills/agent-search-booster/references/setup.md)。可以先让 Agent 检查哪些入口已经可用。
-3. 直接调用 Skill，无需每次指定工具或记住命令：
-
-```text
-使用 $agent-search-booster，查找 XXX 的实际使用体验。
-尽量取得原帖、正文和重要评论，必要时跨平台补充来源，再整理结论。
-```
-
-工具已准备好时，用户只需交代目标和范围。Skill 中的具体调用方法供 Agent 按需读取。
-
-## 工具组合对照表
-
-这是本方案整合的完整组件清单，用来检查是否配齐。已有对应入口可复用；备注注明补充、备选或运行组件。配齐后仍由 Agent 按任务调度，不会每题调用全部工具。
+用于检查本Skill整合的组件是否准备好。用户依此确认安装/连接，任务执行中的工具组合由Agent负责。工具分类采用本方案的接入方式；同一项目可能还提供其他运行方式。备注中的备选、补充和协作项不重复安装，也不把历史接通情况当作当前用户环境可用。
 
 ### 网页与 MCP
 
@@ -79,17 +51,13 @@
 | AGY / Gemini | CLI / 辅助 Agent | [项目 / 文档](https://www.antigravity.google/docs/cli/overview) | 分析已经取得的批量材料 | 补充协作；独立工具环境，需登录 |
 | subagent-manager | 配套 Skill | [项目 / 文档](https://github.com/LiX-Works/subagent-manager) | 管理子代理模型、交接和 Grok 额度 | 协作规则可衔接；不影响主搜索入口 |
 
-## Agent 调用说明
+## Agent检查方法
 
-| 文件 | 提供什么 |
-|---|---|
-| [Skill 入口](skills/agent-search-booster/SKILL.md) | 任务识别、工具分工、内容获取和交付 |
-| [网页与 MCP](skills/agent-search-booster/references/web-tools.md) | 搜索补充、正文读取、Context7 和 GitHub 调用 |
-| [平台读取](skills/agent-search-booster/references/platforms.md) | OpenCLI、浏览器桥、帖子、评论与字幕 |
-| [Grok](skills/agent-search-booster/references/grok.md) | X 原帖、线程和深入查询 |
-| [本地材料与服务](skills/agent-search-booster/references/local-tools.md) | 文档转换、OCR、RSS 与 SearXNG |
-| [工具清单](skills/agent-search-booster/references/tool-catalog.md)与[配置要点](skills/agent-search-booster/references/setup.md) | 安装对照、MCP 代码与接通检查 |
+- MCP/插件：确认当前工具发现中是否暴露所需search/fetch/scrape/query类入口，有授权时选一个任务相关的最小实际调用；配置文件和登录标记不能代替返回结果。
+- CLI：用Get-Command/command -v和对应--help确认入口、版本和参数；发现缺失再按原链接指路，不为检查重新安装。
+- 浏览器：确认Bridge与用户授权的浏览器配置，必要时OpenCLI doctor；桥连通、站点登录和目标内容取得分别记录。
+- 本地服务：使用者提供自己的实例URL，检查可达性和读取接口；不预设作者端口、Docker容器名或包装命令。
+- 首次配齐时输出“可用/缺失/需登录/未验收”及能力影响，普通任务只检查将要用到的入口。不要要求用户为每次搜索选择工具。
+- 完整组合的依赖可以逐项补齐；尚未配齐时仍能运行现有路线，但不能声称全部能力已启用。
 
-Skill 统一调用方法，外部程序、服务和账户仍需准备。平台访问、认证和分页会影响实际取得范围，Agent 会说明未取得的部分；只使用已授权的免费或套餐额度。
-
-采用 [MIT 许可证](LICENSE)。已发布版本见 [Releases](https://github.com/LiX-Works/agent-search-booster/releases)。
+必要MCP代码和运行连接条件见[配置要点](setup.md)。原链接按2026-09-30官方或原项目资料核对；上游变化时重新确认。
