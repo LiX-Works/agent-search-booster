@@ -1,8 +1,8 @@
-# multi-source-search
+# agent-search-booster
 
 [English](README.md) | **简体中文**
 
-一份用于多源搜索、读取原文和核验来源的 Codex Skill。
+为 Agent 补强搜索与资料获取能力的 Codex Skill：按问题选择渠道，读取原文并核验来源。
 
 这个项目整理了调研与事实核查中的实际做法：按问题选择已有工具，沿搜索结果找到原始资料，再说明证据支持什么、哪些问题还不能确认。适合技术问题、近期变化、软件文档和平台讨论等需要外部资料的任务。
 
@@ -29,7 +29,7 @@
 假设你想知道项目正在使用的软件库版本是否支持某项功能，可以这样提出任务：
 
 ```text
-使用 $multi-source-search，核查我们当前使用的版本是否支持这个功能。
+使用 $agent-search-booster，核查我们当前使用的版本是否支持这个功能。
 
 先看官方文档和发布记录；如有助于理解适用条件或已知问题，再查用户讨论。
 给出来源链接，区分已经确认的行为与用户经验，
@@ -46,8 +46,8 @@
 
 ## 开始使用
 
-1. 下载仓库，将 `skills/multi-source-search/` 整个文件夹复制到个人 `~/.agents/skills/` 或项目 `.agents/skills/`，选择一处即可。已有同名 Skill 时，先比较你修改过的规则。
-2. 在调研任务中提到 `$multi-source-search`，或由 Codex 根据请求选用。若列表未出现新 Skill，可重新打开任务后检查。见[官方 Skill 文档](https://learn.chatgpt.com/docs/build-skills)。
+1. 下载仓库，将 `skills/agent-search-booster/` 整个文件夹复制到个人 `~/.agents/skills/` 或项目 `.agents/skills/`，选择一处即可。已有同名 Skill 时，先比较你修改过的规则。
+2. 在调研任务中提到 `$agent-search-booster`，或由 Codex 根据请求选用。若列表未出现新 Skill，可重新打开任务后检查。见[官方 Skill 文档](https://learn.chatgpt.com/docs/build-skills)。
 3. 先用一个简单的公开资料问题，确认搜索、打开来源和返回引用的链路能实际工作。
 
 没有 Exa、Tavily 或 OpenCLI，也可以先使用当前可用的内置搜索或浏览器。
@@ -66,8 +66,8 @@
 
 | 文件 | 用途 |
 |---|---|
-| [SKILL.md](skills/multi-source-search/SKILL.md) | 搜索判断、证据检查、工具失败和任务边界 |
-| [网页与文档工具](skills/multi-source-search/references/web-tools.md) | 网页发现、正文读取、代码资料与工具选择 |
-| [平台材料](skills/multi-source-search/references/platforms.md) | 帖子、视频页面、转录文本、评论和覆盖范围 |
+| [SKILL.md](skills/agent-search-booster/SKILL.md) | 搜索判断、证据检查、工具失败和任务边界 |
+| [网页与文档工具](skills/agent-search-booster/references/web-tools.md) | 网页发现、正文读取、代码资料与工具选择 |
+| [平台材料](skills/agent-search-booster/references/platforms.md) | 帖子、视频页面、转录文本、评论和覆盖范围 |
 
-本 Skill 可独立使用，需要委派时也可搭配 [subagent-manager](https://github.com/LiX-Works/subagent-manager)。已发布的 Release（如有）见[版本页面](https://github.com/LiX-Works/multi-source-search/releases)，采用 [MIT 许可证](LICENSE)。
+本 Skill 可独立使用，需要委派时也可搭配 [subagent-manager](https://github.com/LiX-Works/subagent-manager)。已发布的 Release（如有）见[版本页面](https://github.com/LiX-Works/agent-search-booster/releases)，采用 [MIT 许可证](LICENSE)。

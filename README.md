@@ -1,8 +1,8 @@
-# multi-source-search
+# agent-search-booster
 
 **English** | [简体中文](README.zh-CN.md)
 
-A Codex Skill for finding information across sources, reading the original material, and checking what the evidence supports.
+A Codex Skill for strengthening an agent's search workflow: choosing sources, reading original material, and checking what the evidence supports.
 
 This project collects practical rules for research and fact-checking. Codex uses them to choose available search tools according to the question, follow useful results back to their sources, and explain what was confirmed and what remains uncertain. It is useful for technical questions, recent developments, software documentation, and platform discussions.
 
@@ -29,7 +29,7 @@ Third-party tools need to be configured in your own environment. The Skill suppl
 Suppose you want to know whether your installed version of a library supports a feature:
 
 ```text
-Use $multi-source-search to check whether this feature is supported
+Use $agent-search-booster to check whether this feature is supported
 in the version we use.
 
 Start with official documentation and release notes. Read relevant user
@@ -48,8 +48,8 @@ This is an example of how to report evidence, rather than a mandatory answer tem
 
 ## Getting started
 
-1. Download the repository and copy the entire `skills/multi-source-search/` folder into either your personal `~/.agents/skills/` directory or the project's `.agents/skills/` directory. Choose one location. If a Skill with the same name exists, compare your customizations before replacing it.
-2. Mention `$multi-source-search` in a research task, or let Codex select it based on the request. If the new Skill is not listed, reopen the task and check again. See the [official Skill documentation](https://learn.chatgpt.com/docs/build-skills).
+1. Download the repository and copy the entire `skills/agent-search-booster/` folder into either your personal `~/.agents/skills/` directory or the project's `.agents/skills/` directory. Choose one location. If a Skill with the same name exists, compare your customizations before replacing it.
+2. Mention `$agent-search-booster` in a research task, or let Codex select it based on the request. If the new Skill is not listed, reopen the task and check again. See the [official Skill documentation](https://learn.chatgpt.com/docs/build-skills).
 3. Try a small public-information question to check that searching, opening sources, and returning citations work in your environment.
 
 Missing Exa, Tavily, or OpenCLI does not prevent you from starting with an available built-in search or browser tool.
@@ -68,8 +68,8 @@ Work follows the current request and existing authorization. The Skill allows re
 
 | File | Purpose |
 |---|---|
-| [SKILL.md](skills/multi-source-search/SKILL.md) | Search decisions, evidence checks, tool failures, and task boundaries |
-| [Web and document tools](skills/multi-source-search/references/web-tools.md) | Web discovery, full-text reading, code documentation, and tool selection |
-| [Platform material](skills/multi-source-search/references/platforms.md) | Posts, video pages, transcripts, comments, and coverage limits |
+| [SKILL.md](skills/agent-search-booster/SKILL.md) | Search decisions, evidence checks, tool failures, and task boundaries |
+| [Web and document tools](skills/agent-search-booster/references/web-tools.md) | Web discovery, full-text reading, code documentation, and tool selection |
+| [Platform material](skills/agent-search-booster/references/platforms.md) | Posts, video pages, transcripts, comments, and coverage limits |
 
-The Skill can be used independently or alongside [subagent-manager](https://github.com/LiX-Works/subagent-manager) when delegation is useful. See [Releases](https://github.com/LiX-Works/multi-source-search/releases) for published releases, when available. The project uses the [MIT license](LICENSE).
+The Skill can be used independently or alongside [subagent-manager](https://github.com/LiX-Works/subagent-manager) when delegation is useful. See [Releases](https://github.com/LiX-Works/agent-search-booster/releases) for published releases, when available. The project uses the [MIT license](LICENSE).

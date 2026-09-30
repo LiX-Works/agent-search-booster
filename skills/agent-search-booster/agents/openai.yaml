@@ -1,5 +1,5 @@
 interface:
-  display_name: "多源搜索"
+  display_name: "Agent Search Booster"
   short_description: "按缺口选择渠道，读取原文并核验来源与覆盖范围"
 policy:
   allow_implicit_invocation: true
