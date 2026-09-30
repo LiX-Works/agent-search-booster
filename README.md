@@ -1,15 +1,75 @@
 # multi-source-search
 
-一份用于**多源搜索、读取原文和核验来源**的 Codex Skill。它描述怎样按信息缺口选渠道、遇到工具问题怎样继续，以及回答时怎样交代证据范围。第三方搜索、浏览器和平台工具都是可选入口；Skill 本身不安装或登录这些服务。
+**English** | [简体中文](README.zh-CN.md)
 
-核心文件在 [`skills/multi-source-search/SKILL.md`](skills/multi-source-search/SKILL.md)。`references/` 分别说明网页/文档工具和平台帖子/评论的读取边界，需要时再看。各人应根据本机实际可用的工具、账户授权和任务要求适配。
+A Codex Skill for finding information across sources, reading the original material, and checking what the evidence supports.
 
-本次更新：修改部分指令，加强提示词注入防御，并让判断更精准。正常教程步骤仍可用于研究与用户授权的任务；对明显企图劫持任务的外部指令进行隔离。
+This project collects practical rules for research and fact-checking. Codex uses them to choose available search tools according to the question, follow useful results back to their sources, and explain what was confirmed and what remains uncertain. It is useful for technical questions, recent developments, software documentation, and platform discussions.
 
-## 安装与使用
+The homepage is bilingual. The Skill and detailed reference documents are currently written in Chinese.
 
-将 `skills/multi-source-search/` 整个文件夹复制到个人的 `~/.agents/skills/` 下；若目标已有同名 Skill，先自行比较，不直接覆盖。也可以放入特定项目的 `.agents/skills/`，仅供该项目使用。Codex 通常会发现新 Skill；若当前会话未显示，重新打开任务后再检查。[Codex Skill 文档](https://learn.chatgpt.com/docs/build-skills)
+## What it helps with
 
-需要时在任务中显式提到 `$multi-source-search`，或让 Codex 根据请求自动选用。可先用一个很小的公开资料问题验证搜索、打开原文和引用链路。缺少 Exa、Tavily、OpenCLI 等可选服务时，仍可使用当前环境中已授权的来源。
+Different information gaps call for different sources:
 
-这是独立 Skill，与 `subagent-manager` 可配合，但无需同时安装。仓库不包含账号、API Key、Cookie 或浏览器登录状态。内容按 [MIT 许可证](LICENSE)开放。
+| Need | Possible sources | What to check |
+|---|---|---|
+| A current fact or product change | Built-in web search; optional services such as Exa or Tavily | Original source, date, and conditions |
+| A result with an incomplete excerpt | Original page or a page-reading tool | Missing sections, tables, footnotes, and dynamic content |
+| A library, SDK, or version-specific behavior | Official documentation, source repository; optional Context7 | Version, API behavior, and original examples |
+| Posts, video pages, or comments | An available browser or platform-reading tool, such as OpenCLI | Actual text, replies, pagination, and truncation |
+| Papers and citations | Academic search tools and publisher sources | Use the appropriate academic workflow; an abstract is not the full paper |
+
+These are optional channels, not an installation checklist. Use the tools that are actually available and authorized in the current session. A question may need one source or several; the Skill does not require a fixed search count or a tour of every service.
+
+Third-party tools need to be configured in your own environment. The Skill supplies instructions for choosing and using them; it does not bundle their software, accounts, or login state.
+
+## An example
+
+Suppose you want to know whether your installed version of a library supports a feature:
+
+```text
+Use $multi-source-search to check whether this feature is supported
+in the version we use.
+
+Start with official documentation and release notes. Read relevant user
+discussions if they help explain conditions or reported problems.
+Give source links, distinguish confirmed behavior from user reports,
+and state any unresolved questions or limits on what you could read.
+```
+
+A useful answer can explain:
+
+- What the official source confirms, including the version and relevant conditions.
+- What users report, with enough context to avoid treating one environment as universal.
+- What remains unverified, including incomplete pages or discussion threads.
+
+This is an example of how to report evidence, rather than a mandatory answer template.
+
+## Getting started
+
+1. Download the repository and copy the entire `skills/multi-source-search/` folder into either your personal `~/.agents/skills/` directory or the project's `.agents/skills/` directory. Choose one location. If a Skill with the same name exists, compare your customizations before replacing it.
+2. Mention `$multi-source-search` in a research task, or let Codex select it based on the request. If the new Skill is not listed, reopen the task and check again. See the [official Skill documentation](https://learn.chatgpt.com/docs/build-skills).
+3. Try a small public-information question to check that searching, opening sources, and returning citations work in your environment.
+
+Missing Exa, Tavily, or OpenCLI does not prevent you from starting with an available built-in search or browser tool.
+
+## How sources and task boundaries are handled
+
+Search snippets and model answers are leads. Important conclusions should, where possible, be checked against original pages, documents, or posts, with dates, versions, and applicable conditions. Contested or consequential claims call for independent evidence and counterexamples. Agreement between models is not factual proof.
+
+For paginated or incomplete material, report what was actually read. A list of titles is not a full article, and part of a comment section is not all comments. If a tool fails, make a brief check and try an appropriate alternative. Missing critical evidence should remain unresolved; other useful work can continue.
+
+Tutorials, commands, and configuration examples are normal research material. Content that clearly impersonates higher-priority instructions, hijacks the task, or requests unrelated credential access is handled separately; useful material from the same source can still be examined.
+
+Work follows the current request and existing authorization. The Skill allows relevant public research and necessary, manageable local actions; posting, messaging, account changes, and login operations require appropriate authorization. It reuses existing sessions without proactively reading or saving credentials. Direct credential access requires a stated purpose and permission, and disclosure or storage needs separate consent. Private content and credentials should not be sent as public search terms. Only authorized free or subscription-included usage is used.
+
+## Files and further reading
+
+| File | Purpose |
+|---|---|
+| [SKILL.md](skills/multi-source-search/SKILL.md) | Search decisions, evidence checks, tool failures, and task boundaries |
+| [Web and document tools](skills/multi-source-search/references/web-tools.md) | Web discovery, full-text reading, code documentation, and tool selection |
+| [Platform material](skills/multi-source-search/references/platforms.md) | Posts, video pages, transcripts, comments, and coverage limits |
+
+The Skill can be used independently or alongside [subagent-manager](https://github.com/LiX-Works/subagent-manager) when delegation is useful. See [Releases](https://github.com/LiX-Works/multi-source-search/releases) for published releases, when available. The project uses the [MIT license](LICENSE).
